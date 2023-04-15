@@ -11,6 +11,11 @@
     "@notionhq/client": "^2.2.3",
     "next": "13.1.6",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "sass": "^1.62.0"
+  },
+  "devDependencies": {
+    "@types/react": "18.0.35",
+    "typescript": "5.0.4"
   }
 }
