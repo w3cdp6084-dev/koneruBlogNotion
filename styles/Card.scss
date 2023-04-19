@@ -1,0 +1,20 @@
+.posts{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+}
+.cardOuter{
+ box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.05);
+ border-radius: 14px;
+ padding: 20px;
+ max-width: inherit;
+ width: -webkit-fit-content;
+ width: -moz-fit-content;
+ width: fit-content;
+ background: #fff;
+ color: #474747;
+ margin: 0 auto;
+ display: inline-block;
+ transition: 0.4s;
+}
