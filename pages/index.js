@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getDatabase } from "../lib/notion";
 import { Text } from "./[id].js";
 import styles from "./index.module.css";
+import HamburgerMenu from '../components/HamburgerMenu';
 
 export const databaseId = process.env.NOTION_DATABASE_ID;
 
@@ -90,6 +91,7 @@ export default function Home({ posts }) {
           })}
         </ol>
       </main>
+      <HamburgerMenu />
     </div>
   );
 }
