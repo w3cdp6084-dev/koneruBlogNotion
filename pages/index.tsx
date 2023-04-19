@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import { getDatabase } from "../lib/notion";
-import { Text } from "./[id].jsx";
+import { Text } from "./[id]";
 import styles from "./index.module.css";
 import HamburgerMenu from '../components/HamburgerMenu';
 
