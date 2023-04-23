@@ -5,6 +5,7 @@ import { Text } from "./[id]";
 import styles from "./index.module.css";
 import HamburgerMenu from '../components/HamburgerMenu';
 
+
 export const databaseId = process.env.NOTION_DATABASE_ID;
 
 export default function Home({ posts }) {
@@ -67,27 +68,41 @@ export default function Home({ posts }) {
 
         <h2 className={styles.heading}>All Posts</h2>
         <ol className="posts">
-          {posts.map((post) => {
-            const date = new Date(post.last_edited_time).toLocaleString(
-              "en-US",
-              {
-                month: "short",
-                day: "2-digit",
-                year: "numeric",
-              }
-            );
-            return (
-              <Link href={`/${post.id}`} className="cardOuter">
-                <li key={post.id} className={styles.post}>
-                  <div className="cardInner">
-                    <h3 className={styles.postTitle}><Text text={post.properties.Name.title} /></h3>
-                    <p className={styles.postDescription}>{date}</p>
-                    <div>READ📖👀</div>
-                  </div>
-                </li>
-              </Link>
-            );
-          })}
+        {posts.map((post) => {
+        
+  const date = new Date(post.last_edited_time).toLocaleString(
+    "en-US",
+    {
+      month: "short",
+      day: "2-digit",
+      year: "numeric",
+    }
+    
+  );
+  const tags = post.properties.Tags.multi_select.map(tag => tag.name);
+  const thumbnailUrl = post.properties.Thumbnail?.files[0]?.file?.url;
+  const publicThumbnailUrl = thumbnailUrl ? `${thumbnailUrl}&publicAccess=true` : null;
+  const decodedThumbnailUrl = publicThumbnailUrl ? decodeURIComponent(publicThumbnailUrl) : null;
+  return (
+    <Link href={`/${post.id}`} key={post.id} className="cardOuter">
+      <li key={post.id} className={styles.post}>
+        <div className="cardInner">
+        {decodedThumbnailUrl && (
+   <img src={decodedThumbnailUrl} className={styles.postThumbnail} alt="Thumbnail" />
+)}
+
+
+          <h3 className={styles.postTitle}><Text text={post.properties.Name.title} /></h3>
+          <p className={styles.postDescription}>{date}</p>
+          <p className={styles.postDescription}>{tags.join(', ')}</p>
+          <div>READ📖👀</div>
+        </div>
+      </li>
+    </Link>
+  );
+})}
+
+
         </ol>
       </main>
       <HamburgerMenu />
